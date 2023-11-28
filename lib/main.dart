@@ -1,3 +1,5 @@
+import 'package:blookly_app/Features/Splash%20feature/splash%20view.dart';
+import 'package:blookly_app/constance.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -11,6 +13,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData.dark().copyWith(scaffoldBackgroundColor: primarycolor),
+      home: SplashView(),
     );
   }
 }
