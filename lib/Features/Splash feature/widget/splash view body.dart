@@ -1,9 +1,8 @@
-import 'package:blookly_app/Features/home/presentation/views/homeView.dart';
-import 'package:blookly_app/constance.dart';
+
+import 'package:blookly_app/core/utils/App_router.dart';
 import 'package:blookly_app/core/utils/asset-utils.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
+import 'package:go_router/go_router.dart';
 
 class SplashViewBody extends StatelessWidget {
   const SplashViewBody({super.key});
@@ -12,8 +11,8 @@ class SplashViewBody extends StatelessWidget {
   Widget build(BuildContext context) {
 
     Future.delayed(Duration(seconds: 2),() {
-      Get.to(HomeView(),transition:Transition.fade,duration: KTransationDuration);
-    },);
+      GoRouter.of(context).push(App_Router.khomeViewPath);
+    });
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.stretch,

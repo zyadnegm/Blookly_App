@@ -1,7 +1,6 @@
-import 'package:blookly_app/Features/Splash%20feature/splash%20view.dart';
 import 'package:blookly_app/constance.dart';
+import 'package:blookly_app/core/utils/App_router.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 void main() {
@@ -13,11 +12,11 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GetMaterialApp(
+    return MaterialApp.router(
+      routerConfig: App_Router.router,
       debugShowCheckedModeBanner: false,
       theme: ThemeData.dark().copyWith(scaffoldBackgroundColor: primarycolor,
       textTheme: GoogleFonts.montserratTextTheme(ThemeData.dark().textTheme)),
-      home: SplashView(),
 
     );
   }

@@ -1,4 +1,6 @@
+import 'package:blookly_app/core/utils/App_router.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 import 'BestsellerListview_Item.dart';
 
@@ -14,7 +16,11 @@ class BestsellerListview extends StatelessWidget {
       itemBuilder: (context, index) {
         return Padding(
           padding: const EdgeInsets.symmetric(horizontal: 30,vertical: 10),
-          child: BestsellerListview_Item(),
+          child: InkWell(
+            onTap: () {
+              GoRouter.of(context).push(App_Router.kBookDetailsPath);
+            },
+              child: BestsellerListview_Item()),
         );
       },);
   }
