@@ -1,8 +1,8 @@
-import 'package:blookly_app/core/utils/asset-utils.dart';
 import 'package:flutter/material.dart';
 
 class ListView_Item extends StatelessWidget {
-  const ListView_Item({super.key});
+  const ListView_Item({super.key, required this.urlImage});
+  final String urlImage;
 
   @override
   Widget build(BuildContext context) {
@@ -11,7 +11,7 @@ class ListView_Item extends StatelessWidget {
       child: Container(
         decoration: BoxDecoration(
           image: DecorationImage(
-            image: AssetImage(AssetData.testImage)
+            image: NetworkImage(urlImage)
           )
         ),
       ),
