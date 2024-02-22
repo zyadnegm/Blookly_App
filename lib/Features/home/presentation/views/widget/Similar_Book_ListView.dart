@@ -1,4 +1,9 @@
+import 'package:blookly_app/Features/home/presentation/manager/Book_Detail_cubit/BookDetail_cubit.dart';
+import 'package:blookly_app/Features/home/presentation/manager/Book_Detail_cubit/BookDetail_states.dart';
+import 'package:blookly_app/core/widget/Custom_CircularProgressIndicator.dart';
+import 'package:blookly_app/core/widget/Custom_errorMessage.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'ListView_Item.dart';
 
@@ -7,18 +12,31 @@ class Similar_Book_ListView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: MediaQuery.sizeOf(context).height *.17,
-      child: ListView.builder(
-        scrollDirection: Axis.horizontal,
-        itemBuilder: (context, index) {
-          return Padding(
-            padding: const EdgeInsets.all(5.0),
-            child: ListView_Item(
-              urlImage: "https://www.google.com/url?sa=i&url=https%3A%2F%2Far.m.wikipedia.org%2Fwiki%2F%25D9%2585%25D9%2584%25D9%2581%3ABooks_HD_%25288314929977%2529.jpg&psig=AOvVaw02Y5WtFSv55b1gFMnY7Krf&ust=1708534261115000&source=images&cd=vfe&opi=89978449&ved=0CBIQjRxqFwoTCJiOuZ-wuoQDFQAAAAAdAAAAABAE",
-            ),
+    return BlocBuilder<BookDetail_Cubit,BooksDetail_States>(
+      builder: (context, state) {
+        if(state is BookDetail_Success){
+          return SizedBox(
+            height: MediaQuery.sizeOf(context).height *.17,
+            child: ListView.builder(
+              itemCount: state.books.length,
+              scrollDirection: Axis.horizontal,
+              itemBuilder: (context, index) {
+                return Padding(
+                  padding: const EdgeInsets.all(5.0),
+                  child: ListView_Item(
+                    urlImage: state.books[index].volumeInfo?.imageLinks?.thumbnail??"",
+                  ),
+                );
+              },),
           );
-        },),
+        }
+        else if(state is BookDetail_Faluire){
+          return Custom_errorMessage(errormessaga: state.error);
+        }
+        else{
+          return Custom_CircularProgressIndicator();
+        }
+      },
     );
   }
 }

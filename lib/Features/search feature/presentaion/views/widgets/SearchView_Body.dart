@@ -45,7 +45,7 @@ class Search_ListVew extends StatelessWidget {
               onTap: () {
                 GoRouter.of(context).push(App_Router.kBookDetailsPath);
               },
-              child: BestsellerListview_Item()),
+              child: Text("")),
         );
       },);
   }

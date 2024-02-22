@@ -4,11 +4,9 @@ import 'package:blookly_app/Features/home/presentation/manager/Books_Cubit/Books
 import 'package:blookly_app/constance.dart';
 import 'package:blookly_app/core/utils/Api_Service.dart';
 import 'package:blookly_app/core/utils/App_router.dart';
-import 'package:blookly_app/core/utils/Server_locator.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:get_it/get_it.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 void main() {
@@ -22,14 +20,14 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider(create: (context) => Books_Cubit(
-          Home_Repo_Imp(Api_Service(Dio()))
-
-        )..fetchfeatureBooks()),
         BlocProvider(create: (context) => BestSeller_Cubit(
-            Home_Repo_Imp(Api_Service(Dio()))
+            Home_Repo_Imp(Api_Service(Dio()))..fetchBestSeller_Books()
 
         )),
+
+        BlocProvider(create: (context) => Books_Cubit(
+          Home_Repo_Imp(Api_Service(Dio()))
+        )..fetchfeatureBooks()),
 
 
 

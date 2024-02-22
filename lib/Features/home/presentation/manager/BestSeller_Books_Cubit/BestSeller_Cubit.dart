@@ -8,7 +8,7 @@ class BestSeller_Cubit extends Cubit<BestSeller_States>{
 
   Future<void>fetchBestSeller_Books()async {
     emit(BestSeller_Loading());
-    var result= await homeRepo.fetchFueatureBooks();
+    var result= await homeRepo.fetchBestSeller_Books();
     result.fold((faluire) {
       emit(BestSeller_Faluire(faluire.error_message));
     }, (books) {
